@@ -455,7 +455,7 @@ const server = http.createServer(async (req, res) => {
   /* ══════════════════════════════════════════════
      Static file serving (serves your HTML pages)
   ══════════════════════════════════════════════ */
-  let filePath = path.join(__dirname, pathname === '/' ? '/MAIN PAGE.html' : pathname);
+  let filePath = path.join(__dirname, pathname === '/' ? '/login page.html' : pathname);
   const ext = path.extname(filePath);
 
   if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
