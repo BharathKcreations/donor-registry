@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Care</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: black;
+            background-size: 400% 400%;
+            animation: gradientMove 10s ease infinite;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        nav h2 {
+            letter-spacing: 2px;
+        }
+
+        spam {
+            color: red;
+        }
+
+        .login-btn {
+            background: rgba(0, 255, 221, 0.1);
+            border: 1px solid rgba(0, 255, 221, 0.4);
+            color: #00ffdd;
+            padding: 8px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .login-btn:hover {
+            background: #00ffdd;
+            color: black;
+            box-shadow: 0 0 15px rgba(0, 255, 221, 0.4);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            text-shadow: 0 0 20px #00ffff;
+        }
+
+        .hero p {
+            margin-top: 10px;
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        /* Heart Animation */
+        .heart {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #ff4b5c;
+            transform: rotate(-45deg);
+            animation: heartbeat 1s infinite;
+            bottom: 100px;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #ff4b5c;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -40px;
+        }
+
+        .heart::after {
+            left: 40px;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: rotate(-45deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(-45deg) scale(1.2);
+            }
+        }
+
+        /* ECG Line */
+        .ecg {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+        }
+
+        .ecg svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .ecg path {
+            stroke: #00ffcc;
+            stroke-width: 3;
+            fill: none;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: ecgMove 4s linear infinite;
+        }
+
+        @keyframes ecgMove {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Floating Medical Icons */
+        .icon {
+            position: absolute;
+            font-size: 30px;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 50px;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            margin: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            display: inline-block;
+            width: 250px;
+            transition: 0.1s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px #00ffff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+
+        <h2><i>HE<spam>L</spam>P - HUMAN EMERGENCY LIFE PROVIDERS</i></h2>
+
+    </nav>
+    <div class="hero">
+        <h1>Your Health, Our Priority</h1>
+        <p>Advanced Medical Services with Care</p>
+
+        <div class="heartbeat"></div>
+
+        <div class="icon" style="left:10%; top:20%;">💊</div>
+        <div class="icon" style="left:85%; top:30%;">🩺</div>
+        <div class="icon" style="left:70%; top:60%;">➕</div>
+        <div class="icon" style="left:25%; top:65%;">🩸</div>
+
+        <div class="ecg">
+            <svg>
+                <path d="M0 80 L100 80 L120 40 L140 120 L160 80 L1000 80" />
+            </svg>
+        </div>
+    </div>
+
+    <section>
+        <h2>Our Services</h2>
+        <button onclick="document.location.href='Emergency Care.html'" class="card" style=color:white;>Emergency
+            Care</button>
+        <button onclick="document.location.href= 'blood information.html'" border="0" class="card"
+            style=color:white;>Blood</button>
+        <button onclick="document.location.href='organ information.html'" class="card"
+            style=color:white;>Organs</button>
+    </section>
+    <section>
+        <h2>Donor</h2>
+        <button onclick="window.location.href='REGISTER FORM.html'" class="card" style="color:white;">📝 Register
+            Now</button>
+    </section>
+
+    
+
+    <footer>
+        @ 2026 HELP - HUMAN EMERGENCY LIFE PROVIDERS
+    </footer>
+
+</body>
+
+</html>

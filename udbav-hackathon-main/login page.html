@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELP — Login</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Exo+2:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --teal: #00ffdd;
+            --blue: #0088ff;
+            --deep: #000308;
+            --glass: rgba(0, 18, 45, .7);
+            --border: rgba(0, 220, 200, .18);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            background: var(--deep);
+            font-family: 'Exo 2', sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* wrapper scroll fix */
+        .wrapper {
+            width: 100%;
+            max-width: 460px;
+            padding: 20px;
+            max-height: 100vh;
+            overflow-y: auto;
+        }
+
+        /* thin neon scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#00ffdd, #0088ff);
+            border-radius: 10px;
+        }
+
+        /* logo */
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo:hover .logo-icon {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(0, 200, 220, .8);
+        }
+
+        .logo:hover .logo-text {
+            filter: brightness(1.2);
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #00eedd, #0055ff);
+            box-shadow: 0 0 25px rgba(0, 200, 220, .5);
+            font-size: 22px;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 3px;
+            font-weight: 700;
+            font-size: 20px;
+            background: linear-gradient(90deg, #00ffdd, #0088ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* card */
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            backdrop-filter: blur(25px);
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, .5);
+        }
+
+        /* tabs */
+        .tabs {
+            display: flex;
+            gap: 6px;
+            padding: 18px;
+        }
+
+        .tab {
+            flex: 1;
+            border: none;
+            padding: 10px;
+            background: transparent;
+            color: rgba(255, 255, 255, .5);
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .tab.active {
+            background: rgba(0, 200, 200, .15);
+            color: var(--teal);
+            border: 1px solid rgba(0, 220, 200, .3);
+        }
+
+        /* sliding panels */
+        .track {
+            display: flex;
+            width: 200%;
+            transition: .45s;
+        }
+
+        .track.signup {
+            transform: translateX(-50%);
+        }
+
+        .panel {
+            width: 50%;
+            padding: 35px;
+        }
+
+        /* headings */
+        .form-head {
+            text-align: center;
+            margin-bottom: 20px
+        }
+
+        .form-head h2 {
+            font-family: 'Orbitron';
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .form-head p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .5);
+        }
+
+        /* fields */
+        .field {
+            margin-bottom: 16px
+        }
+
+        label {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--teal);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .inp {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 200, 200, .2);
+            background: rgba(0, 15, 40, .7);
+            color: white;
+            outline: none;
+        }
+
+        .inp:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 10px rgba(0, 200, 200, .25);
+        }
+
+        /* button */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Orbitron';
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #00ccee, #0055ff);
+            color: white;
+            transition: .25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 150, 255, .4);
+        }
+
+        /* links */
+        .switch {
+            text-align: center;
+            font-size: 13px;
+            margin-top: 15px;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .switch a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        /* toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: #001e3c;
+            border: 1px solid rgba(0, 240, 220, .4);
+            padding: 14px 25px;
+            border-radius: 12px;
+            opacity: 0;
+            transition: .35s;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+
+<body>        
+        <div class="card">
+
+            <div class="tabs">
+                <button class="tab active" id="tab1" onclick="show('signin')">SIGN IN</button>
+                <button class="tab" id="tab2" onclick="show('signup')">SIGN UP</button>
+            </div>
+
+            <div class="track" id="track">
+
+                <!-- SIGN IN -->
+                <div class="panel">
+
+                    <div class="form-head">
+                        <h2>WELCOME BACK</h2>
+                        <p>Sign in to your account</p>
+                    </div>
+
+                    <div class="field">
+                        <label>Email</label>
+                        <input class="inp" id="si-email" type="email" placeholder="you@example.com">
+                    </div>
+
+                    <div class="field">
+                        <label>Password</label>
+                        <input class="inp" id="si-pass" type="password" placeholder="Enter password">
+                    </div>
+
+                    <button class="btn" onclick="signin()">SIGN IN</button>
+
+                    <div class="switch">
+                        No account? <a href="#" onclick="show('signup')">Sign up</a>
+                    </div>
+
+                </div>
+
+                <!-- SIGN UP -->
+                <div class="panel">
+
+                    <div class="form-head">
+                        <h2>CREATE ACCOUNT</h2>
+                        <p>Join life-saving donors</p>
+                    </div>
+
+                    <div class="field">
+                        <label>Full Name</label>
+                        <input class="inp" id="su-name" placeholder="Your name">
+                    </div>
+
+                    <div class="field">
+                        <label>Email</label>
+                        <input class="inp" id="su-email" type="email" placeholder="you@example.com">
+                    </div>
+
+                    <div class="field">
+                        <label>Phone</label>
+                        <input class="inp" id="su-phone" placeholder="+91 00000 00000">
+                    </div>
+
+                    <div class="field">
+                        <label>Password</label>
+                        <input class="inp" id="su-pass" type="password" placeholder="Create password">
+                    </div>
+
+                    <div class="field">
+                        <label>Confirm Password</label>
+                        <input class="inp" id="su-pass2" type="password" placeholder="Repeat password">
+                    </div>
+
+                    <button class="btn" onclick="signup()">CREATE ACCOUNT</button>
+
+                    <div class="switch">
+                        Already have account? <a href="#" onclick="show('signin')">Sign in</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">Success</div>
+
+    <script>
+
+        function show(type) {
+            const track = document.getElementById("track");
+            document.getElementById("tab1").classList.remove("active");
+            document.getElementById("tab2").classList.remove("active");
+
+            if (type === "signup") {
+                track.classList.add("signup");
+                tab2.classList.add("active");
+            } else {
+                track.classList.remove("signup");
+                tab1.classList.add("active");
+            }
+        }
+
+        function toast(msg) {
+            const t = document.getElementById("toast");
+            t.textContent = msg;
+            t.classList.add("show");
+            setTimeout(() => t.classList.remove("show"), 3000);
+        }
+
+        async function signin() {
+            const email = document.getElementById("si-email").value;
+            const password = document.getElementById("si-pass").value;
+
+            if (!email || !password) {
+                return toast("Fill all fields ⚠️");
+            }
+
+            try {
+                const res = await fetch('http://localhost:3000/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    toast(`Welcome , ${data.user.name} 💙`);
+                    // Save minimal state if needed, e.g. sessionStorage.setItem('user', JSON.stringify(data.user));
+                    setTimeout(() => window.location.href = 'MAIN PAGE.html', 1500);
+                } else {
+                    toast(`❌ ${data.error || 'Login failed'}`);
+                }
+            } catch (err) {
+                toast("❌ Network error. Is the server running?");
+            }
+        }
+
+        async function signup() {
+            const name = document.getElementById("su-name").value;
+            const email = document.getElementById("su-email").value;
+            const phone = document.getElementById("su-phone").value;
+            const p1 = document.getElementById("su-pass").value;
+            const p2 = document.getElementById("su-pass2").value;
+
+            if (!name || !email || !p1) {
+                return toast("Please fill required fields ⚠️");
+            }
+            if (p1 !== p2) {
+                return toast("Passwords do not match ❌");
+            }
+
+            try {
+                const res = await fetch('http://localhost:3000/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, phone, password: p1 })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    toast("Account created 🎉 Please Sign In.");
+                    setTimeout(() => show('signin'), 1500);
+                } else {
+                    toast(`❌ ${data.error || 'Registration failed'}`);
+                }
+            } catch (err) {
+                toast("❌ Network error.");
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
